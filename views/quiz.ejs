@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Home</title>
+    <link href="/assets/index.css" rel="stylesheet" type="text/css" />
+	<!-- JavaScript function declarations -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="quiz.js" defer></script> <!--deferred to allow loading of page-->
+</head>
+
+<%- include('partials/header'); -%>
+<%- include('partials/navigation'); -%>
+
+<body>
+    
+    <div id="content">
+    <main>
+        <div class="quiz-container"> <!--container to hold quiz for formatting -->
+            <div id="quiz">
+               
+            </div>
+            </div>
+            <button id="previous">Previous Question</button> <!--quiz buttons -->
+            <button id="next">Next Question</button>
+            <button id="submit">Get Results</button>
+              		
+            <div id="results"></div> <!--results div to show score -->
+       
+    </main>
+    </div>
+    <div id="hiddencontent">
+        <%= data.recordset[0] %>
+    </div>
+
+
+    <%- include('partials/footer'); -%>	
+
+</body>
+</html>

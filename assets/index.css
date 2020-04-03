@@ -1,0 +1,334 @@
+main
+{
+    overflow: hidden;
+}
+
+body 
+{
+	width: auto;
+	margin: 0 auto;
+  /* border: 1px solid black; */
+  background-color: white;
+  height: auto;
+}
+
+#content
+{
+  position: relative;
+  height: auto;
+  overflow: hidden;
+  min-height: 593px;
+  background: cornsilk;
+}
+
+header
+{
+    background-color: mediumturquoise;
+    color: white;
+
+}
+
+.dailyQuiz
+{
+  text-align: center;
+  border : 1px solid black;
+  background: gold;
+  width: 270px;
+  height: 450px;
+  position: fixed;
+  top: 100px;
+  left: 10%;
+  transform: translateX(-10%);  
+  justify-content: space-evenly;
+}
+
+.weeklyQuiz
+{
+  text-align: center;
+  border : 1px solid black;
+  background: crimson;
+  width: 270px;
+  height: 450px;
+  position: fixed; 
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: space-evenly;
+}
+
+.randomQuiz
+{
+  text-align: center;
+  border : 1px solid black;
+  background: forestgreen;
+  width: 270px;
+  height: 450px; 
+  position: fixed;
+  top: 100px;
+  left: 90%;
+  transform: translateX(-90%);
+  justify-content: space-evenly;
+}
+
+.numQ
+{
+  
+  position: relative;
+  width: 200px;
+}
+
+.customCateg
+{
+ 
+  position: relative;
+  width: 200px;
+}
+
+.customDiff
+{
+  
+  position: relative;
+  width: 200px;
+}
+
+.button
+{
+  background-color: lightslategray;
+  border: none;
+  border-radius: 20px;
+  width: 110px;
+  height: 30px;
+  color: white;
+}
+
+.button:hover
+{
+  background-color: darkslategray;
+}
+
+p
+{
+  margin-left: 150px;
+}
+
+footer
+{
+    background-color:mediumturquoise;
+    color: white;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid black;
+}
+
+#about
+{
+    margin-left: 20px;
+}
+#contact
+{
+    margin-left: 20px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:mediumturquoise;
+    
+  }
+
+  #head li
+  {
+    float: left;
+  }
+  
+  li {
+    float: right;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+   
+  li a:hover {
+    background-color: white;
+    color:mediumturquoise;
+  }
+
+  #logo
+  {
+      height: 140px;
+      width: 300px;
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-top: 5px;
+  }
+.question{ /*styling for each question */
+    font-weight: 600;
+}
+.answers {/*styling for answers*/
+  margin-bottom: 20px;
+}
+.answers label{
+  display: block;
+}
+#submit{ /*styling for the submit button*/
+    font-family: sans-serif;
+    font-size: 20px;
+    background-color: #279;
+    color: #fff;
+    border: 0px;
+    border-radius: 3px;
+    padding: 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+#submit:hover{
+    background-color: #38a;
+}
+#previous{     /*styling for previous button */
+    font-family: sans-serif;
+    font-size: 20px;
+    background-color: #279;
+    color: #fff;
+    border: 0px;
+    border-radius: 3px;
+    padding: 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+#previous:hover{
+    background-color: #38a;
+}
+#next{/*styling for next button */
+    font-family: sans-serif;
+    font-size: 20px;
+    background-color: #279;
+    color: #fff;
+    border: 0px;
+    border-radius: 3px;
+    padding: 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+#next:hover{
+    background-color: #38a;
+}
+#help{     /*styling for help button */
+    font-family: sans-serif;
+    font-size: 20px;
+    background-color: #279;
+    color: #fff;
+    border: 0px;
+    border-radius: 3px;
+    padding: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+#help:hover{
+    background-color: #38a;
+}
+.slide{ /*styling for the slides, this is important for pagination*/
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 100%;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.active-slide{ /*styling for the active slide, the one currently being shown*/
+  opacity: 1;
+  z-index: 1;
+}
+.quiz-container{ /*styling for the quiz container as a whole*/
+  position: relative;
+  height: 200px;
+  margin-top: 40px;
+}
+p /*styling for p tags */
+{
+	font-size:20px;
+}
+img { /*styling for images, even though there arent any yet*/
+	border: groove;
+	border-width: 2px;
+}
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px; 
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+  
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+#hiddencontent{
+  display: none;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Home</title>
+	<link href="/assets/index.css" rel="stylesheet" type="text/css" />
+</head>
+
+<%- include('partials/header'); -%>
+<%- include('partials/navigation'); -%>
+
+<body>
+    
+    <div id="content">
+    <main>
+        <div class="dailyQuiz">
+            <h2>Daily Random Quiz</h2>
+            <br>
+            <h2>New random quiz daily!</h2>
+            <br>
+            <h2>Daily quiz leaders</h2>
+            <h3>1. MMCGEE</h3>
+            <h3>2. CVAIL</h3>
+            <h3>3. PLINDE</h3>
+            <br>
+            <button class="button" id="dailyPlay">Play</button>
+            
+        </div>
+        
+        <div class="weeklyQuiz">
+            <h2>Weekly Random Quiz</h3>
+                <br>
+                <h2>New random quiz weekly!</h2>
+                <br>
+                <h2>Daily quiz leaders</h2>
+                <h3>1. MMCGEE</h3>
+                <h3>2. CVAIL</h3>
+                <h3>3. PLINDE</h3>
+                <br>
+                <button class="button" id="weeklyPlay">Play</button>
+            
+        </div>
+
+        <div class="randomQuiz">
+            <h2>Random Quiz</h3>
+                <br>
+                <h2>Customize your own quiz!</h2>
+                <br>
+                <select class="numQ">
+                    <option value="0"># of Questions</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <br>
+                <br>
+                <select class="customCateg">
+                    <option value="0">Category</option>
+                    <option value="choice 1">choice 1</option>
+                    <option value="choice 2">choice 2</option>
+                    <option value="choice 3">choice 3</option>
+                    <option value="choice 4">choice 4</option>
+                    <option value="choice 5">choice 5</option>
+                </select>
+                <br>
+                <br>
+                <select class="customDiff">
+                    <option value="0">Difficulty</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                    <option value="Expert">Expert</option>
+                </select>
+                <br>
+                <br>
+                <button class="button" id="randomPlay">Play</button>
+            
+        </div>
+
+
+       
+    </main>
+    </div>
+
+
+    <%- include('partials/footer'); -%>	
+
+</body>
+</html>

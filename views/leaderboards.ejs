@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Leaderboard</title>
+	<link href="/assets/index.css" rel="stylesheet" type="text/css" />
+</head>
+
+<%- include('partials/header'); -%>
+<%- include('partials/navigation'); -%>
+
+<body>
+    
+    <div id="content">
+    <main>
+        <br>
+        <center style = "font:30px arial, serif">LEADERBOARD</center>
+        <br>
+        
+        <center><table style = "width:80%">
+            <tr>
+                <th>RANK</th>
+                <th>NAME</th>
+                <th>SCORE</th>
+            </tr>
+            <tr>
+                <td align="center">1.</td>
+                <td align="center">ALEX</td>
+                <td align="center">90</td>
+            </tr>
+            <tr>
+                <td align="center">2.</td>
+                <td align="center">SAM</td>
+                <td align="center">70</td>
+            </tr>
+            <tr>
+                <td align="center">3.</td>
+                <td align="center">CHARLES</td>
+                <td align="center">60</td>
+            </tr>
+            <tr>
+                <td align="center">4.</td>
+                <td align="center">BOB</td>
+                <td align="center">40</td>
+            </tr>
+            <tr>
+                <td align="center">5.</td>
+                <td align="center">ERIC</td>
+                <td align="center">30</td>
+            </tr>
+            </table></center>
+            <p style="font-family:Arial, Helvetica, sans-serif">Search for high-scores by name:</p>
+            <p><input type="text" name="search" id="hiscoresearch"></p>
+            <p><button type="submit">Search</button></p>
+    
+    </main>
+    </div>
+
+
+    <%- include('partials/footer'); -%>	
+
+</body>
+</html>
