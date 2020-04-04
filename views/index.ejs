@@ -10,7 +10,7 @@
 <%- include('partials/navigation'); -%>
 
 <body>
-    
+
     <div id="content">
     <main>
         <div class="dailyQuiz">
@@ -24,9 +24,9 @@
             <h3>3. PLINDE</h3>
             <br>
             <button class="button" id="dailyPlay">Play</button>
-            
+
         </div>
-        
+
         <div class="weeklyQuiz">
             <h2>Weekly Random Quiz</h3>
                 <br>
@@ -38,7 +38,7 @@
                 <h3>3. PLINDE</h3>
                 <br>
                 <button class="button" id="weeklyPlay">Play</button>
-            
+
         </div>
 
         <div class="randomQuiz">
@@ -46,51 +46,35 @@
                 <br>
                 <h2>Customize your own quiz!</h2>
                 <br>
-                <select class="numQ">
-                    <option value="0"># of Questions</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                <br>
-                <br>
                 <select class="customCateg">
-                    <option value="0">Category</option>
-                    <option value="choice 1">choice 1</option>
-                    <option value="choice 2">choice 2</option>
-                    <option value="choice 3">choice 3</option>
-                    <option value="choice 4">choice 4</option>
-                    <option value="choice 5">choice 5</option>
+									<option value="Any">Any Category</option>
+									<% for (var i = 0; i < categories.length; i++) { %>
+	                <option value="<%= categories[i].CATEGORY_NAME %>"><%= categories[i].CATEGORY_NAME %></option>
+	                <% } %>
                 </select>
                 <br>
                 <br>
                 <select class="customDiff">
-                    <option value="0">Difficulty</option>
-                    <option value="Easy">Easy</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Hard">Hard</option>
-                    <option value="Expert">Expert</option>
+                    <option value="Any">All Difficulties</option>
+										<% for (var i = 0; i < difficulties.length; i++) { %>
+		                <option value="<%= difficulties[i].LEVEL %>"><%= difficulties[i].LEVEL %></option>
+		                <% } %>
                 </select>
                 <br>
                 <br>
+								<br>
+								<br><br><br><br><br><br>
                 <button class="button" id="randomPlay">Play</button>
-            
+
         </div>
 
 
-       
+
     </main>
     </div>
 
 
-    <%- include('partials/footer'); -%>	
+    <%- include('partials/footer'); -%>
 
 </body>
 </html>
