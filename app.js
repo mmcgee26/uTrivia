@@ -36,8 +36,24 @@ app.get('/about', function (req, res) { //about handler
 app.post('/quiz', urlencodedParser, function (req, res) { //quiz handler !IMPORTANT!
     var difficulty = req.body.difficulty;
     var category = req.body.category;
+    var query = 'SELECT * FROM QUESTIONS ';
     console.log('Difficulty: ' + difficulty + '\nCategory: ' + category);
 
+    if(difficulty != 'Any' || category != 'Any'){
+      var whereClause = 'WHERE ';
+
+      if(difficulty != 'Any'){
+          whereClause += 'DIFFICULTY = ' + difficulty + ' '
+        }
+
+        if(category != 'Any'){
+          if(difficulty != 'Any'){
+            whereClause += 'AND CATEGORY = ' + category + ' '
+          }else{
+            whereClause += 'CATEGORY = ' + category + ''
+          }
+        }
+    }
     sql.connect(config, function (err) {
 
         if (err) console.log(err);
@@ -46,7 +62,8 @@ app.post('/quiz', urlencodedParser, function (req, res) { //quiz handler !IMPORT
         var request = new sql.Request();
 
         // query to the database and get the records
-        request.query('select * from QUESTIONS WHERE DIFFICULTY = ' + difficulty + 'AND CATEGORY = ' + category, function (err, data) {
+
+        request.query(query + whereClause, function (err, data) {
             if (err) console.log(err)
 
             var questionList = data.recordset;
