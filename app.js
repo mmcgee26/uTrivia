@@ -3,6 +3,7 @@ var session = require('cookie-session');
 var bodyParser = require('body-parser');
 const {check, validationResult} = require('express-validator/check');
 var sql = require("mssql/msnodesqlv8");
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var path = require('path');
 var app = express();
 
@@ -10,8 +11,6 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '/views')));
 app.use('/assets', express.static('assets'));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
 
 //start business logic
 var config = {
@@ -30,6 +29,13 @@ app.get('/about', function (req, res) { //about handler
 });
 
 app.get('/quiz', function (req, res) { //quiz handler !IMPORTANT!
+    res.render('quiz');
+});
+
+app.post('/quiz', urlencodedParser, function (req, res) { //quiz handler !IMPORTANT!
+    var difficulty = req.body.difficulty;
+    var category = req.body.category;
+    console.log('Difficulty: ' + difficulty + '\nCategory: ' + category);
 
     sql.connect(config, function (err) {
 
@@ -39,16 +45,14 @@ app.get('/quiz', function (req, res) { //quiz handler !IMPORTANT!
         var request = new sql.Request();
 
         // query to the database and get the records
-        request.query('select TOP 3 * from QUESTIONS', function (err, data) {
+        request.query('select * from QUESTIONS WHERE DIFFICULTY = ' + difficulty + 'AND CATEGORY = ' + category, function (err, data) {
             if (err) console.log(err)
 
-            res.render('quiz', {data: data});
-
+            var questionList = data.recordset;
+            console.log(questionList[0]);
+            res.render('quiz', {questions: questionList});
         });
-
     });
-
-
 });
 
 app.get('/contact', function (req, res) { //contact handler
@@ -71,12 +75,12 @@ app.get('/', function(req, res){ //index handler
         var request = new sql.Request();
 
         // query to the database and get the records
-        request.query('select CATEGORY_NAME from CATEGORY ORDER BY CATEGORY_NAME', function (err, data) {
+        request.query('select * from CATEGORY ORDER BY CATEGORY_NAME', function (err, data) {
             if (err) console.log(err)
 
             categoryList = data.recordset;
 
-            request.query('select LEVEL from DIFFICULTY', function (err, data) {
+            request.query('select * from DIFFICULTY', function (err, data) {
                 if (err) console.log(err)
 
                 difficultyList = data.recordset;
