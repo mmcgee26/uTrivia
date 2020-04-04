@@ -22,6 +22,9 @@
 							<p><%= questions[0].QUESTION %></p>
 							<input type="radio" name="<%= questions[0].ANSWER %>" value="<%= questions[0].ANSWER %>">
 							<label for="<%= questions[0].ANSWER %>"><%= questions[0].ANSWER %></label>
+							<br>
+							<input type="radio" name="<%= questions[0].INCORRECT_ANSWERS %>" value="<%= questions[0].INCORRECT_ANSWERS %>">
+							<label for="<%= questions[0].INCORRECT_ANSWERS %>"><%= questions[0].INCORRECT_ANSWERS %></label>
             </div>
         </div>
             <button id="previous">Previous Question</button> <!--quiz buttons -->

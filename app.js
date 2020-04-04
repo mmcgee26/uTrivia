@@ -28,9 +28,10 @@ app.get('/about', function (req, res) { //about handler
     res.render('about');
 });
 
-app.get('/quiz', function (req, res) { //quiz handler !IMPORTANT!
-    res.render('quiz');
-});
+//PHL - Took out get route for quiz because it should only be accessible via post from index
+//app.get('/quiz', function (req, res) { //quiz handler !IMPORTANT!
+    //res.render('quiz');
+//});
 
 app.post('/quiz', urlencodedParser, function (req, res) { //quiz handler !IMPORTANT!
     var difficulty = req.body.difficulty;
