@@ -14,28 +14,30 @@
 <%- include('partials/navigation'); -%>
 
 <body>
-    
+
     <div id="content">
     <main>
         <div class="quiz-container"> <!--container to hold quiz for formatting -->
             <div id="quiz">
-               
+							<p><%= questions[0].QUESTION %></p>
+							<input type="radio" name="<%= questions[0].ANSWER %>" value="<%= questions[0].ANSWER %>">
+							<label for="<%= questions[0].ANSWER %>"><%= questions[0].ANSWER %></label>
             </div>
-            </div>
+        </div>
             <button id="previous">Previous Question</button> <!--quiz buttons -->
             <button id="next">Next Question</button>
             <button id="submit">Get Results</button>
-              		
+
             <div id="results"></div> <!--results div to show score -->
-       
+
     </main>
     </div>
     <div id="hiddencontent">
-        <%= data.recordset[0] %>
+        <!--  -->
     </div>
 
 
-    <%- include('partials/footer'); -%>	
+    <%- include('partials/footer'); -%>
 
 </body>
 </html>
