@@ -332,3 +332,12 @@ img { /*styling for images, even though there arent any yet*/
 #hiddencontent{
   display: none;
 }
+#hiddencontent2{
+  display: none;
+}
+#wrapper{
+  text-align: center;
+}
+#results{
+  font-size: 20px;
+}

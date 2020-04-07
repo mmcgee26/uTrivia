@@ -1,4 +1,8 @@
-{
+[
+    {
+        "question_id": 100,
+        "difficulty": 1,
+        "category": 10,
         "question": "In the video-game franchise Kingdom Hearts, the main protagonist, carries a weapon with what shape?",
         "answers": {
             "a": "Key",
@@ -7,4 +11,18 @@
             "d": "cellphone"
         },
         "correctAnswer": "a"
-}
+    },
+    {
+    "question_id": 101,
+        "difficulty": 1,
+        "category": 10,
+        "question": "sample question 2",
+        "answers": {
+            "a": "Key",
+            "b": "Sword",
+            "c": "Pen",
+            "d": "cellphone"
+        },
+        "correctAnswer": "a"
+    }
+]

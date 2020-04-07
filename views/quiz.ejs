@@ -17,27 +17,22 @@
 
     <div id="content">
     <main>
+        <div id="wrapper">
         <div class="quiz-container"> <!--container to hold quiz for formatting -->
             <div id="quiz">
-							<p><%= questions[0].QUESTION %></p>
-							<input type="radio" name="<%= questions[0].ANSWER %>" value="<%= questions[0].ANSWER %>">
-							<label for="<%= questions[0].ANSWER %>"><%= questions[0].ANSWER %></label>
-							<br>
-							<input type="radio" name="<%= questions[0].INCORRECT_ANSWERS %>" value="<%= questions[0].INCORRECT_ANSWERS %>">
-							<label for="<%= questions[0].INCORRECT_ANSWERS %>"><%= questions[0].INCORRECT_ANSWERS %></label>
+							
             </div>
         </div>
             <button id="previous">Previous Question</button> <!--quiz buttons -->
             <button id="next">Next Question</button>
             <button id="submit">Get Results</button>
-
+            
             <div id="results"></div> <!--results div to show score -->
-
+    </div>
     </main>
     </div>
-    <div id="hiddencontent">
-        <!--  -->
-    </div>
+    <div id="hiddencontent"><%= difficulty %></div>
+    <div id="hiddencontent2"><%= category %></div>
 
 
     <%- include('partials/footer'); -%>

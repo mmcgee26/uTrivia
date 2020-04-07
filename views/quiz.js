@@ -1,103 +1,65 @@
-var myQuestions = "default";
+//this bit of code will pull questions from the JSON file, then push them into the myQuestions array
+
 $.ajaxSetup({
     async: false
 });
-$.getJSON('questions.json', function(jd) {
-	myQuestions = jd;
- });
- alert(tempQ.question);
 
-var myQuestions = [ //all of the questions and answers are stored in this data structure.
-	{
-		question: "1.) What do you need to run Java?",
-		answers: {
-			a: 'Usain Bolt',
-			b: 'Java JDK',
-			c: 'Java compiler'
-		},
-		correctAnswer: 'b'
-	},
-	{
-		question: "2.) What was the original name for Java?",
-		answers: {
-			a: 'Javapower',
-			b: 'Jala',
-			c: 'Oak'
-		},
-		correctAnswer: 'c'
-	},
-	{
-		question: "3.) Which company created Java?",
-		answers: {
-			a: 'Microsoft',
-			b: 'Apple',
-			c: 'Sun Microsystems'
-		},
-		correctAnswer: 'c'
-	},
-	{
-		question: "4.) Which of the following is a keyword in Java?",
-		answers: {
-			a: 'repeat',
-			b: 'final',
-			c: 'elseif'
-		},
-		correctAnswer: 'b'
-	},
-	{
-		question: "5.) All Java classes inherit this class: _______",
-		answers: {
-			a: 'class',
-			b: 'Object',
-			c: 'private'
-		},
-		correctAnswer: 'b'
-	},
-	{
-		question: "6.) TRUE/FALSE: Java is case-sensitive",
-		answers: {
-			a: 'True',
-			b: 'False'
-		},
-		correctAnswer: 'a'
-	},
-	{
-		question: "7.) TRUE/FALSE: whitespace is ignored in Java",
-		answers: {
-			a: 'True',
-			b: 'False'
-		},
-		correctAnswer: 'a'
-	},
-	{
-		question: "8.) What must be at the end of every Java statement?",
-		answers: {
-			a: 'end',
-			b: 'done',
-			c: ';'
-		},
-		correctAnswer: 'c'
-	},
-	{
-		question: "9.) What is the syntax for creating a multi-line comment in Java?",
-		answers: {
-			a: 'comment: ',
-			b: '//.....\\',
-			c: '/*......*/'
-		},
-		correctAnswer: 'c'
-	},
-	{
-		question: "10.) What is the syntax for creating a single-line comment in Java?",
-		answers: {
-			a: 'comment: ',
-			b: '//',
-			c: '/*......*/'
-		},
-		correctAnswer: 'b'
-	},
-];
+var quizdifficulty = $('#hiddencontent').text();
+var quizcategory = $('#hiddencontent2').text();
 
+
+var quizData;
+var getData = function(array) {
+   quizData = null;
+    $.get( "/questions/" + quizdifficulty + "&" + quizcategory, function( data ) {
+		var qarray = [{}];
+		quizData = data;
+		//alert(quizData.questions[0].ANSWER);
+		console.log(quizData.questions);
+		
+		//logic to re-format array
+		var reformatArray = function(questions) {
+			return questions.map(function(question) {
+			  // create a new object to store quiz questions.
+			  	var newObj = {};
+				
+				var temp = question.ANSWER + ' ,' + question.INCORRECT_ANSWERS;
+				temp = temp.split(',');
+				
+				for(i = 0; i < temp.length; i++){ //loop to remove spaces from the answers
+					temp[i] = temp[i].trim();
+				}
+				
+				newObj["question_id"] = question.QUESTION_ID;
+				newObj["difficulty"] = question.DIFFICULTY;
+				newObj["category"] = question.CATEGORY;
+				newObj["question"] = question.QUESTION;
+
+				if(temp.length > 2){
+				newObj["answers"] = {"a": temp[0], "b": temp[1], "c": temp[2], "d": temp[3]};
+				}
+				else{
+				newObj["answers"] = {"a": temp[0], "b": temp[1]};
+				}
+
+				newObj["correctAnswer"] = question.ANSWER;
+		  
+			  // return our new object.
+			  return newObj;
+			});
+		  };
+		
+		  qarray = reformatArray(quizData.questions);
+		  array = qarray;
+		  console.log(qarray);
+		  
+		//end formatting logic
+	});
+	return array;
+};
+
+var questionsArray = getData(questionsArray);
+//alert(questionsArray);
 
 function generateQuiz(questions, $quizContainer, $resultsContainer, $submitButton){ //overall funtion for creating the quiz
 
@@ -119,7 +81,7 @@ function generateQuiz(questions, $quizContainer, $resultsContainer, $submitButto
 			//add an html radio button
 			answers.push(
 				'<label>'
-					+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
+					+ '<input type="radio" name="question'+i+'" value="'+questions[i].answers[letter]+'">'
 					+ letter + ': '
 					+ questions[i].answers[letter]
 				+ '</label>'
@@ -129,7 +91,7 @@ function generateQuiz(questions, $quizContainer, $resultsContainer, $submitButto
 		// add this question and its answers to the output
 		output.push(
 			'<div class="slide">' +
-			'<div class="question">' + questions[i].question + '</div>'
+			'<div class="question">' + questions[i].question + '</div><br>'
 			+ '<div class="answers">' + answers.join('') + '</div>'
 			+ '</div>'
 		);
@@ -155,7 +117,6 @@ function generateQuiz(questions, $quizContainer, $resultsContainer, $submitButto
 	
 	// for each question...
 	for(var i=0; i<questions.length; i++){
-
 		// find selected answer
 		userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
 		
@@ -220,7 +181,7 @@ var $submitButton = $("#submit");
 var currentSlide = 0;
 var $previousButton = $("#previous");
 var $nextButton = $("#next");
-generateQuiz(myQuestions, $quizContainer, $resultsContainer, $submitButton); //initializing the quiz
+generateQuiz(questionsArray, $quizContainer, $resultsContainer, $submitButton); //initializing the quiz
 
 // pagination
 
@@ -232,7 +193,7 @@ const slides = document.querySelectorAll(".slide"); //declaring slides
 	$previousButton.click(showPreviousSlide); //adding event listeners
 $nextButton.click(showNextSlide);
 $("#submit").click(function(){
-		showResults(myQuestions, $quizContainer, $resultsContainer);
+		showResults(questionsArray, $quizContainer, $resultsContainer);
 	});
 $("#help").click(function(){
 		$("#dialog").dialog({

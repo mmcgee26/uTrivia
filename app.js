@@ -3,7 +3,6 @@ var session = require('cookie-session');
 var bodyParser = require('body-parser');
 const {check, validationResult} = require('express-validator/check');
 var sql = require("mssql/msnodesqlv8");
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var path = require('path');
 var app = express();
 
@@ -11,10 +10,16 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '/views')));
 app.use('/assets', express.static('assets'));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 //start business logic
+
+
+
 var config = {
-    server: 'localhost\\SQLExpress',
+    server: 'localhost',
     database: 'uTrivia',
     options: {
         trustedConnection: true
@@ -29,13 +34,9 @@ app.get('/about', function (req, res) { //about handler
 });
 
 //PHL - Took out get route for quiz because it should only be accessible via post from index
-//app.get('/quiz', function (req, res) { //quiz handler !IMPORTANT!
-    //res.render('quiz');
-//});
-
-app.post('/quiz', urlencodedParser, function (req, res) { //quiz handler !IMPORTANT!
-    var difficulty = req.body.difficulty;
-    var category = req.body.category;
+app.get('/questions/:difficulty&:category', function (req, res) { //quiz handler !IMPORTANT!
+    var difficulty = req.params.difficulty;
+    var category = req.params.category;
     var query = 'SELECT * FROM QUESTIONS ';
     console.log('Difficulty: ' + difficulty + '\nCategory: ' + category);
 
@@ -68,9 +69,15 @@ app.post('/quiz', urlencodedParser, function (req, res) { //quiz handler !IMPORT
 
             var questionList = data.recordset;
             console.log(questionList[0]);
-            res.render('quiz', {questions: questionList});
+            res.json({questions: questionList});
         });
     });
+});
+
+app.post('/quiz', urlencodedParser, function (req, res) { //quiz handler !IMPORTANT!
+    var difficulty = req.body.difficulty;
+    var category = req.body.category;
+    res.render('quiz', {difficulty: difficulty, category: category});
 });
 
 app.get('/contact', function (req, res) { //contact handler
