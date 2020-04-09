@@ -37,7 +37,7 @@ app.get('/about', function (req, res) { //about handler
 app.get('/questions/:difficulty&:category', function (req, res) { //quiz handler !IMPORTANT!
     var difficulty = req.params.difficulty;
     var category = req.params.category;
-    var query = 'SELECT * FROM QUESTIONS ';
+    var query = 'SELECT Top 10 * FROM QUESTIONS ';
     console.log('Difficulty: ' + difficulty + '\nCategory: ' + category);
 
     if(difficulty != 'Any' || category != 'Any'){
