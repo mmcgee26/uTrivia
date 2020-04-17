@@ -1,7 +1,6 @@
 var express = require('express');
 var session = require('cookie-session');
 var bodyParser = require('body-parser');
-const {check, validationResult} = require('express-validator/check');
 var sql = require("mssql/msnodesqlv8");
 var path = require('path');
 var app = express();
@@ -64,7 +63,7 @@ app.get('/questions/:difficulty&:category', function (req, res) { //quiz handler
 
         // query to the database and get the records
 
-        request.query(query + whereClause, function (err, data) {
+        request.query(query + whereClause + ' ORDER BY NEWID()', function (err, data) {
             if (err) console.log(err)
 
             var questionList = data.recordset;
