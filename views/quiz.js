@@ -29,6 +29,12 @@ var getData = function(array) {
 				for(i = 0; i < temp.length; i++){ //loop to remove spaces from the answers
 					temp[i] = temp[i].trim();
 				}
+
+				//add random sort to temp array to randomize answers
+				for (let i = temp.length - 1; i > 0; i--) {
+					const j = Math.floor(Math.random() * (i + 1));
+					[temp[i], temp[j]] = [temp[j], temp[i]];
+				}
 				
 				newObj["question_id"] = question.QUESTION_ID;
 				newObj["difficulty"] = question.DIFFICULTY;
@@ -138,6 +144,8 @@ function generateQuiz(questions, $quizContainer, $resultsContainer, $submitButto
 	// show number of correct answers out of total
 	document.getElementById("results").innerHTML = numCorrect + ' out of ' + questions.length;
 	//$resultsContainer.html = numCorrect + ' out of ' + questions.length;
+
+	
 }
 
 	
